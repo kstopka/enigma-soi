@@ -98,6 +98,14 @@
                 "longitude": 20.930564789789
             },
             "metadata": null
+        },
+        {
+            "batteryLevelPct": 98,
+            "status": "NOT_AVAILABLE",
+            "location": {
+                "latitude": 52.193893397,
+                "longitude": 20.93056229789
+            }
         }
     ]
 }
