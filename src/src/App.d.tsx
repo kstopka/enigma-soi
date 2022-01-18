@@ -40,11 +40,9 @@ export interface AddMarkers {
 }
 export interface ChangeStatus {
     type: ActionType.ChangeStatus;
-    cars: JSONlike[];
 }
 export interface ChangeCharge {
     type: ActionType.ChangeCharge;
-    cars: JSONlike[];
 }
 
 export type CenterActions = SetCenter | SetIsLoaded;

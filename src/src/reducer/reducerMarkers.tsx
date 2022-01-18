@@ -11,11 +11,13 @@ export const reducerMarkers = (state: InitialStateMarkersType, action: MarkersAc
         case ActionType.ChangeStatus: {
             return {
                 ...state,
+                status: !state.status,
             };
         }
         case ActionType.ChangeCharge: {
             return {
                 ...state,
+                charge: !state.charge,
             };
         }
 
