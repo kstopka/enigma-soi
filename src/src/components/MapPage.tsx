@@ -11,11 +11,10 @@ interface MapPageProps {}
 
 const MapPage: FunctionComponent<MapPageProps> = () => {
     const { imBusy, cars, errorMessage, error } = useDataObjectsFromApi();
-    const { markersState, markersDispatch } = useContext(MarkersContext);
+    const { markersDispatch } = useContext(MarkersContext);
 
     useEffect(() => {
-        console.log(cars);
-        markersDispatch({ type: ActionType.AddMarkers, cars });
+        markersDispatch({ type: ActionType.AddMarkers, cars, filtredCars: cars });
     }, [cars]);
 
     if (!imBusy) {

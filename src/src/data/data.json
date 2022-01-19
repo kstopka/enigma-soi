@@ -100,11 +100,35 @@
             "metadata": null
         },
         {
+            "batteryLevelPct": 28,
+            "status": "NOT_AVAILABLE",
+            "location": {
+                "latitude": 52.231,
+                "longitude": 20.999
+            }
+        },
+        {
             "batteryLevelPct": 98,
             "status": "NOT_AVAILABLE",
             "location": {
-                "latitude": 52.193893397,
-                "longitude": 20.93056229789
+                "latitude": 52.23,
+                "longitude": 21
+            }
+        },
+        {
+            "batteryLevelPct": 98,
+            "status": "AVAILABLE",
+            "location": {
+                "latitude": 52.231,
+                "longitude": 21
+            }
+        },
+        {
+            "batteryLevelPct": 38,
+            "status": "AVAILABLE",
+            "location": {
+                "latitude": 52.231,
+                "longitude": 21.001
             }
         }
     ]

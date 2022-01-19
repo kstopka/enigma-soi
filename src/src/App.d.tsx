@@ -14,6 +14,7 @@ export enum ActionType {
     SetCarsData,
     SetErrorData,
     AddMarkers,
+    AddFiltredMarkers,
     ChangeStatus,
     ChangeCharge,
 }
@@ -37,6 +38,11 @@ export interface SetErrorData {
 export interface AddMarkers {
     type: ActionType.AddMarkers;
     cars: JSONlike[];
+    filtredCars: JSONlike[];
+}
+export interface AddFiltredMarkers {
+    type: ActionType.AddFiltredMarkers;
+    filtredCars: JSONlike[];
 }
 export interface ChangeStatus {
     type: ActionType.ChangeStatus;
@@ -47,10 +53,14 @@ export interface ChangeCharge {
 
 export type CenterActions = SetCenter | SetIsLoaded;
 export type ObjectsDataActions = SetCarsData | SetErrorData;
-export type MarkersActions = AddMarkers | ChangeCharge | ChangeStatus;
+export type MarkersActions = AddMarkers | AddFiltredMarkers | ChangeCharge | ChangeStatus;
 
 export interface JSONlike {
     [key: string]: unknown;
+    location: {
+        [key: string]: number;
+    };
+    status: string;
 }
 
 export type InitialStateDataType = {
@@ -62,6 +72,7 @@ export type InitialStateDataType = {
 
 export type InitialStateMarkersType = {
     cars: JSONlike[];
+    filtredCars: JSONlike[];
     status: boolean;
     charge: boolean;
 };

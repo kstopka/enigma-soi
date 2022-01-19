@@ -6,6 +6,13 @@ export const reducerMarkers = (state: InitialStateMarkersType, action: MarkersAc
             return {
                 ...state,
                 cars: action.cars,
+                filtredCars: action.filtredCars,
+            };
+        }
+        case ActionType.AddFiltredMarkers: {
+            return {
+                ...state,
+                filtredCars: action.filtredCars,
             };
         }
         case ActionType.ChangeStatus: {
@@ -28,6 +35,7 @@ export const reducerMarkers = (state: InitialStateMarkersType, action: MarkersAc
 
 export const initialStateMarkers: InitialStateMarkersType = {
     cars: [],
+    filtredCars: [],
     status: false,
     charge: false,
 };
