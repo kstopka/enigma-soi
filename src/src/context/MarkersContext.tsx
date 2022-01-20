@@ -11,5 +11,6 @@ export const MarkersContext = createContext(MarkersContextInitial);
 
 export const MarkersProvider = ({ children }: { children: any }) => {
     const [markersState, markersDispatch] = useReducer(reducerMarkers, initialStateMarkers);
+
     return <MarkersContext.Provider value={{ markersState, markersDispatch }}>{children}</MarkersContext.Provider>;
 };
