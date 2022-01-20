@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FunctionComponent, useEffect, useContext } from "react";
-import { ActionType, JSONlike } from "../App.d";
 import { MarkersContext } from "../context/MarkersContext";
+import { ActionType, JSONlike } from "../App.d";
 
 interface MapCheckboxesProps {
     objects: JSONlike[];
@@ -23,7 +23,7 @@ const MapCheckboxes: FunctionComponent<MapCheckboxesProps> = ({ objects }) => {
             });
         }
         markersDispatch({ type: ActionType.AddFiltredMarkers, filtredCars: activeCars });
-    }, [status, charge]);
+    }, [status, charge, cars, markersDispatch]);
     return (
         <div className="navi-checkboxes">
             <div>

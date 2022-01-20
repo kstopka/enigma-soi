@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FunctionComponent, useContext } from "react";
-import { ActionType } from "../App.d";
 import { MarkersContext } from "../context/MarkersContext";
+import { ActionType } from "../App.d";
 
 interface MapPopupProps {
     index: number;

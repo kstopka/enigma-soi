@@ -1,9 +1,9 @@
 import * as React from "react";
 import { FunctionComponent, useContext, useEffect } from "react";
 import { GoogleMap, LoadScript, Marker, MarkerClusterer } from "@react-google-maps/api";
+import { Clusterer } from "@react-google-maps/marker-clusterer";
 import { useGetCenterCoors } from "../hooks/useGetCenterCoords";
 import { MarkersContext } from "../context/MarkersContext";
-import { Clusterer } from "@react-google-maps/marker-clusterer";
 import MapPopup from "./MapPopup";
 import { ActionType } from "../App.d";
 
@@ -18,14 +18,14 @@ const Map: FunctionComponent<MapProps> = () => {
     const { markersState, markersDispatch } = useContext(MarkersContext);
     const { filtredCars } = markersState;
 
+    const center = useGetCenterCoors();
+    const defaultCenter = { lat: 52.23, lng: 21 };
+
     useEffect(() => {
         const length = filtredCars.length;
         const isPopups = new Array(length).fill(false);
         markersDispatch({ type: ActionType.SetIsPopups, isPopups });
-    }, [filtredCars]);
-
-    const center = useGetCenterCoors();
-    const defaultCenter = { lat: 52.23, lng: 21 };
+    }, [filtredCars, markersDispatch]);
 
     const fnClusterer = (clusterer: Clusterer) =>
         filtredCars.map((element, index) => {

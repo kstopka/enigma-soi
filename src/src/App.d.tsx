@@ -1,7 +1,3 @@
-export interface Center {
-    lat: number;
-    lng: number;
-}
 export interface JSONlike {
     [key: string]: unknown;
     location: {
@@ -14,10 +10,6 @@ export interface JSONlike {
     type?: string;
     rangeKm?: number;
     name?: string;
-}
-export interface InitialCenter {
-    center: Center;
-    isLoaded: boolean;
 }
 
 export enum ActionType {
@@ -33,42 +25,42 @@ export enum ActionType {
     ChangeIsPopup,
 }
 
-export interface SetCenter {
+interface SetCenter {
     type: ActionType.SetCenter;
     lat: number;
     lng: number;
 }
-export interface SetIsLoaded {
+interface SetIsLoaded {
     type: ActionType.SetIsLoaded;
 }
-export interface SetCarsData {
+interface SetCarsData {
     type: ActionType.SetCarsData;
     cars: JSONlike[];
 }
-export interface SetErrorData {
+interface SetErrorData {
     type: ActionType.SetErrorData;
     message: string;
 }
-export interface AddMarkers {
+interface AddMarkers {
     type: ActionType.AddMarkers;
     cars: JSONlike[];
     filtredCars: JSONlike[];
 }
-export interface AddFiltredMarkers {
+interface AddFiltredMarkers {
     type: ActionType.AddFiltredMarkers;
     filtredCars: JSONlike[];
 }
-export interface ChangeStatus {
+interface ChangeStatus {
     type: ActionType.ChangeStatus;
 }
-export interface ChangeCharge {
+interface ChangeCharge {
     type: ActionType.ChangeCharge;
 }
-export interface SetIsPopups {
+interface SetIsPopups {
     type: ActionType.SetIsPopups;
     isPopups: boolean[];
 }
-export interface ChangeIsPopup {
+interface ChangeIsPopup {
     type: ActionType.ChangeIsPopup;
     index: number;
     isPopup: boolean;
@@ -77,6 +69,14 @@ export interface ChangeIsPopup {
 export type CenterActions = SetCenter | SetIsLoaded;
 export type ObjectsDataActions = SetCarsData | SetErrorData;
 export type MarkersActions = AddMarkers | AddFiltredMarkers | ChangeCharge | ChangeStatus | SetIsPopups | ChangeIsPopup;
+
+export interface InitialCenter {
+    center: {
+        lat: number;
+        lng: number;
+    };
+    isLoaded: boolean;
+}
 
 export type InitialStateDataType = {
     imBusy: boolean;

@@ -1,10 +1,10 @@
 import * as React from "react";
 import { FunctionComponent, useEffect, useContext } from "react";
 import { useDataObjectsFromApi } from "../hooks/useDataObjectsFromApi";
+import { MarkersContext } from "../context/MarkersContext";
 import Map from "./Map";
 import MapCheckboxes from "./MapCheckboxes";
 import "../css/mapPage.css";
-import { MarkersContext } from "../context/MarkersContext";
 import { ActionType } from "../App.d";
 
 interface MapPageProps {}
@@ -15,7 +15,7 @@ const MapPage: FunctionComponent<MapPageProps> = () => {
 
     useEffect(() => {
         markersDispatch({ type: ActionType.AddMarkers, cars, filtredCars: cars });
-    }, [cars]);
+    }, [cars, markersDispatch]);
 
     if (!imBusy) {
         // TODO: Loader component
