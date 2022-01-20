@@ -36,10 +36,42 @@
 
 .map-page .map-popup {
   position: fixed;
-  height: 300px;
-  width: 300px;
-  top: 100px;
-  left: 100px;
-  background-color: blue;
+  height: 80vh;
+  width: 80%;
+  top: 10vh;
+  left: 10%;
+  background-color: #ccc;
+  border: solid 2px black;
+}
+
+.map-page .map-popup .map-popup-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.map-page .map-popup .map-popup-wrapper .exit {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.map-page .map-popup .map-popup-wrapper p {
+  padding: 5px;
+  color: blue;
 }
 /*# sourceMappingURL=mapPage.css.map */

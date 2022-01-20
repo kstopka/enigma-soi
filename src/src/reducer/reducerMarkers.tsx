@@ -27,6 +27,18 @@ export const reducerMarkers = (state: InitialStateMarkersType, action: MarkersAc
                 charge: !state.charge,
             };
         }
+        case ActionType.SetIsPopups: {
+            return {
+                ...state,
+                isPopups: action.isPopups,
+            };
+        }
+        case ActionType.ChangeIsPopup: {
+            state.isPopups[action.index] = action.isPopup;
+            return {
+                ...state,
+            };
+        }
 
         default:
             return state;
@@ -36,6 +48,7 @@ export const reducerMarkers = (state: InitialStateMarkersType, action: MarkersAc
 export const initialStateMarkers: InitialStateMarkersType = {
     cars: [],
     filtredCars: [],
+    isPopups: [],
     status: false,
     charge: false,
 };

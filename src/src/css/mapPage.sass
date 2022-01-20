@@ -15,9 +15,27 @@
     width: 80%
   .map-popup
     position: fixed
-    height: 300px
-    width: 300px
-    top: 100px
-    left: 100px
-    background-color: blue
+    height: 80vh
+    width: 80%
+    top: 10vh
+    left: 10%
+    background-color: #ccc
+    border: solid 2px black
+    .map-popup-wrapper
+      display: flex
+      justify-content: center
+      align-items: center
+      flex-direction: column
+      height: 100%
+      width: 100%
+      .exit
+        position: absolute
+        right: 0
+        top: 0
+        cursor: pointer
+        padding: 10px
+      p
+        padding: 5px
+        color: blue
+
   

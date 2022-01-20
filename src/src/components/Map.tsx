@@ -1,10 +1,11 @@
 import * as React from "react";
-import { FunctionComponent, useContext, useReducer, useEffect } from "react";
+import { FunctionComponent, useContext, useEffect } from "react";
 import { GoogleMap, LoadScript, Marker, MarkerClusterer } from "@react-google-maps/api";
 import { useGetCenterCoors } from "../hooks/useGetCenterCoords";
 import { MarkersContext } from "../context/MarkersContext";
 import { Clusterer } from "@react-google-maps/marker-clusterer";
 import MapPopup from "./MapPopup";
+import { ActionType } from "../App.d";
 
 // AIzaSyC2LisWK4kMaMunJzDqsuLnevc4dgRBtfc
 
@@ -13,58 +14,27 @@ import MapPopup from "./MapPopup";
 
 interface MapProps {}
 
-const reducerMultipleCheckbox = (state: any, action: any) => {
-    const { index } = action;
-    switch (action.type) {
-        case "setCheckbox": {
-            return {
-                // state: [...state, action.isPopup],
-                ...state,
-                checked: action.checked,
-            };
-        }
-        case "changeCheckbox": {
-            // console.log(state.chec/)
-            const { checked } = state;
-            checked[index] = true;
-            return {
-                ...state,
-            };
-        }
-
-        default:
-            return state;
-    }
-};
-const initialStateMultipleCheckbox: { checked: boolean[] } = {
-    checked: [],
-};
-
 const Map: FunctionComponent<MapProps> = () => {
-    const { markersState } = useContext(MarkersContext);
-    const [multipleCheckboxes, dispatchMultipleCheckboxes] = useReducer(
-        reducerMultipleCheckbox,
-        initialStateMultipleCheckbox
-    );
+    const { markersState, markersDispatch } = useContext(MarkersContext);
+    const { filtredCars } = markersState;
 
     useEffect(() => {
-        const length = markersState.filtredCars.length;
-        const newArr = new Array(length).fill(false);
-        dispatchMultipleCheckboxes({ type: "setCheckbox", checked: newArr });
-    }, [markersState]);
+        const length = filtredCars.length;
+        const isPopups = new Array(length).fill(false);
+        markersDispatch({ type: ActionType.SetIsPopups, isPopups });
+    }, [filtredCars]);
 
     const center = useGetCenterCoors();
     const defaultCenter = { lat: 52.23, lng: 21 };
 
     const fnClusterer = (clusterer: Clusterer) =>
-        markersState.filtredCars.map((element, index) => {
+        filtredCars.map((element, index) => {
             const { location, status } = element;
             const { latitude, longitude } = location;
             const newLocation = {
                 lat: latitude,
                 lng: longitude,
             };
-            const isPopup = multipleCheckboxes.checked[index];
 
             const icon = () => {
                 if (status === "NOT_AVAILABLE") {
@@ -79,10 +49,9 @@ const Map: FunctionComponent<MapProps> = () => {
                     position={newLocation}
                     clusterer={clusterer}
                     icon={icon()}
-                    // TODO: dokonczycz popupa,
-                    onClick={() => dispatchMultipleCheckboxes({ type: "changeCheckbox", index })}
+                    onClick={() => markersDispatch({ type: ActionType.ChangeIsPopup, index, isPopup: true })}
                 >
-                    <MapPopup display={isPopup} index={index} />
+                    <MapPopup index={index} />
                 </Marker>
             );
         });
