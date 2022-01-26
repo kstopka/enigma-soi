@@ -19,7 +19,6 @@ const Map: FunctionComponent<MapProps> = () => {
     const { filtredCars } = markersState;
 
     const center = useGetCenterCoors();
-    const defaultCenter = { lat: 52.23, lng: 21 };
 
     useEffect(() => {
         const length = filtredCars.length;
@@ -58,7 +57,7 @@ const Map: FunctionComponent<MapProps> = () => {
 
     return (
         <LoadScript googleMapsApiKey="AIzaSyC2LisWK4kMaMunJzDqsuLnevc4dgRBtfc">
-            <GoogleMap mapContainerClassName="map" center={defaultCenter} zoom={17}>
+            <GoogleMap mapContainerClassName="map" center={center} zoom={17}>
                 <MarkerClusterer>{fnClusterer}</MarkerClusterer>
             </GoogleMap>
         </LoadScript>

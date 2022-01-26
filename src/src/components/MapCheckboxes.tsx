@@ -17,10 +17,7 @@ const MapCheckboxes: FunctionComponent<MapCheckboxesProps> = ({ objects }) => {
             activeCars = activeCars.filter((item) => item.status === "AVAILABLE");
         }
         if (charge) {
-            activeCars = activeCars.filter((item) => {
-                if (typeof item.batteryLevelPct !== "number") throw new Error("wrong type of batteryLevelPct");
-                return item.batteryLevelPct > 40;
-            });
+            activeCars = activeCars.filter((item) => item.batteryLevelPct > 40);
         }
         markersDispatch({ type: ActionType.AddFiltredMarkers, filtredCars: activeCars });
     }, [status, charge, cars, markersDispatch]);

@@ -10,9 +10,20 @@ const asyncWrapperForPromiseWithConnectedState = async (
     try {
         const placeholderData = await promiseWrapper();
         dispatchData({ type: ActionType.SetCarsData, cars: placeholderData });
-    } catch ({ message, duringError }) {
+    } catch ({ error, message }) {
         if (typeof message !== "string") return;
         dispatchData({ type: ActionType.SetErrorData, message });
+    }
+};
+
+const fetchData = async (dispatchData: React.Dispatch<ObjectsDataActions>) => {
+    try {
+        const url = "https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE";
+        const response = await fetch(url);
+        const json = await response.json();
+        dispatchData({ type: ActionType.SetCarsData, cars: json.objects });
+    } catch (error) {
+        dispatchData({ type: ActionType.SetErrorData, message: "failed fetch" });
     }
 };
 
@@ -21,9 +32,12 @@ export const useDataObjectsFromApi = () => {
     const { imBusy, cars, errorMessage, error } = stateData;
     useEffect(() => {
         if (!imBusy) {
-            asyncWrapperForPromiseWithConnectedState(() => mockedData(true), {
-                dispatchData,
-            });
+            //data to test
+            // asyncWrapperForPromiseWithConnectedState(() => mockedData(true), {
+            //     dispatchData,
+            // });
+            //fetch API
+            fetchData(dispatchData);
         }
     }, [imBusy]);
     return { imBusy, cars, errorMessage, error };
